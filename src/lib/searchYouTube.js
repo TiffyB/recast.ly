@@ -10,7 +10,7 @@ var searchYouTube = (options, callback) => {
       key: options.key
     },
     success: function(data) {
-      console.log(data.items); 
+      // console.log(data.items); 
       callback(data.items);
     },
     fail: function(data) {

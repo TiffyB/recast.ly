@@ -1,10 +1,14 @@
 var Search = (props) => (
   <div className="search-bar form-inline">
-    <input className="form-control" type="text" />
-    <button className="btn hidden-sm-down" onClick={function(){
-      var searchString = $('.form-control').val();
+    <input className="form-control" type="text" onKeyUp={function(e) {
+      var searchString = e.target.value;
+      setTimeout(function() {
+        props.action(searchString);  
+      }, 500);
+    }}/>
+    <button className="btn hidden-sm-down" onClick={function(e) {
+      var searchString = e.target.value;
       props.action(searchString);
-    
     }}>
       <span className="glyphicon glyphicon-search"></span>
     </button>

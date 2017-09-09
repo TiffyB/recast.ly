@@ -11,10 +11,23 @@ class App extends React.Component {
       //   return data;
       // })
       currentVideo: exampleVideoData[0],
-      currentVideoList: exampleVideoData
+      currentVideoList: exampleVideoData,
+      value: ''
       // currentVideo: {},
       // currentVideoList: []
     };
+  }
+  
+  componentDidMount() {
+    // var context = this;
+    // console.log(context);
+    this.props.searchYouTube({max: 5, query:'tiny animals eating', key: YOUTUBE_API_KEY}, (data) => {
+      // console.log('inside function', context);
+      this.setState({
+        currentVideo: data[0],
+        currentVideoList: data
+      });  
+    });
   }
   
   onTitleClick(event) {
@@ -23,6 +36,20 @@ class App extends React.Component {
     });
   }
   
+  // onSubmit(str) {
+  //   var options = {
+  //     max: 5,
+  //     query: this.state.value,
+  //     key: YOUTUBE_API_KEY
+  //   };
+  //   var context = this;
+  //   searchYouTube(options, function(data) {
+  //     context.setState({
+  //       currentVideoList: data,
+  //       currentVideo: data[0]
+  //     });
+  //   });
+  // }
   onSubmit(searchString) {
     var options = {
       max: 5,
@@ -38,25 +65,13 @@ class App extends React.Component {
     });
   }
   
-  componentDidMount() {
-    // var context = this;
-    // console.log(context);
-    this.props.action({max: 5, query:'puppy', key: YOUTUBE_API_KEY}, (data) => {
-      // console.log('inside function', context);
-      this.setState({
-        currentVideo: data[0],
-        currentVideoList: data
-      });  
-    });
-  }
-  
   
   render () {
     return (
     <div>
       <nav className="navbar">
         <div className="col-md-6 offset-md-3">
-          <Search action={this.onSubmit}/>
+          <Search action={this.onSubmit} value={this.state.value}/>
         </div>
       </nav>
       <div className="row">
