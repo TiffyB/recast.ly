@@ -4,7 +4,7 @@ var VideoPlayer = (props) => (
       <iframe className="embed-responsive-item" src={"https://www.youtube.com/embed/" + props.video.id.videoId} allowFullScreen></iframe>
     </div>
     <div className="video-player-details">
-      <h3>{console.log(props)/*props.video.snippet.title*/}</h3>
+      <h3>{props.video.snippet.title}</h3>
       <div>{props.video.snippet.description}</div>
     </div>
   </div>
@@ -13,8 +13,7 @@ var VideoPlayer = (props) => (
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
 VideoPlayer.propTypes = {
-  video: React.PropTypes.object.isRequired,
-  xx: React.PropTypes.object.isRequired
+  video: React.PropTypes.object.isRequired
 };
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope
